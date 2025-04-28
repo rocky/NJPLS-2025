@@ -1,0 +1,5 @@
+$ cat exec-example.py
+$ python exec-example.py
+$ trepan3k exec-example.py
+$ deparse
+$ deparse -p
