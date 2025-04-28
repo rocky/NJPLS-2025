@@ -1,0 +1,4 @@
+$ cat divide-example.py
+$ python divide-example.py
+$ trepan3k divide-example.py
+$ deparse --parent

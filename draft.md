@@ -184,7 +184,11 @@ Can anything be done to get more accurate position numbers in those programming 
 
 What I have done for both of these, is write a decompiler. This starts out with the code produced and reconstructs source code. This is easier done when high-level bytecode is involved as in the case of Python, or where the interpretation is done on a tree structure which happens in Perl5 and Korn Shell.
 
+After writing the decompiler, I then hooked this into a gdb-like debugger.
+
 Let me show this...
+
+First I show the source text. It is what we had before but put into a string that is evaluated at runtime. with two divide in them where one of the divisons raises a *ZeroDivision* error.
 
 
 

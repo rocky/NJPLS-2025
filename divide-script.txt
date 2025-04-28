@@ -1,3 +1,4 @@
+$ asciinema rec --overwrite exec-example.cast
 $ cat exec-example.py
 $ python exec-example.py
 $ trepan3k exec-example.py
