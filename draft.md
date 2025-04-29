@@ -11,7 +11,15 @@ Survey
 
 Let me start off with a little Survey.
 
-[Fill in]
+1. Please raise your hand if you have written a compiler or have been part of a compiler-development team? [report size and compare with survey]
+
+2. Please raise if you have taught a compiler course or were an assistant for a compiler course?
+
+3. Please raise your hand if the compiler course you took mentioned debuggers. decompilers?
+
+4. Or what it takes to support run-time debugging
+
+5. When was the last time you heard a talk exclusively regarding run-time support for debuggers?
 
 
 Overview
@@ -188,8 +196,92 @@ After writing the decompiler, I then hooked this into a gdb-like debugger.
 
 Let me show this...
 
-First I show the source text. It is what we had before but put into a string that is evaluated at runtime. with two divide in them where one of the divisons raises a *ZeroDivision* error.
+First, I show the source text. It is what we had before, an expression with two divisions that raises a *ZeroDivision* error when run. When I run it using Python, not only do we get just the line number, but we get the *wrong* line number! This has been fixed though in Python 3.13.
+
+I run it under a debugger I wrote, called `trepan3k` so that when there is an error, it goes into the debugger's post-mortem handling. In that, there is a `deparse` command which takes deparses the program. For this it uses a grammar and builds a parse tree and from the instructions. Based on this parse tree, we can associate a range of source text.
+
+The `--parent` option is just showing the parent text in addition to the text associated with the instruction.
+
+Previously we mentioned that containers are heirarchical. But here, we see that locations *inside* containers can also be thought of as being heirarchical in the sense of its parse tree.
+
+I have glossed over a lot of detail here, the last slide has links for more information and detail.
+
+Debuggers
+---------
+
+Now I'd like to briefly talk about debuggers. My focus here is to give enough detail in order to describe kind of things that you'd need to keep in mind in writing a compiler to facilitate debuggers.
+
+I've already mentioned one import part: having good position information that maps instructions to source text.
+
+By the way, I've noticed when a debugger is written for a compilation system that doesn't have one, invariably you will be a lot of mistakes in position reporting. In an error  report saying that you are on line *x* when you are really at line *x+1* is unhelpful, but users will tolerate it, possibly for a while. But inside a debugger, if there is a position is off by one line, users will quickly notice it and find it intolerable.
+
+To make things simple, I'm going to talk about debuggers for high-level dynamic interpreters. What I mean by "dynamic" is just that the language allows allows code to be created  and run runtime. Often this done by a `eval()` function. The thing evaluated could be string or it could be an AST built at runtime. The high-level part is kind of a wiggle term, but what I mean here is that the intermediate language that the interpreter runs off of uses higher-level objects, such as objects of the language as opposed to register values and memory addresses.
+
+Languages like Python, Ruby, Perl, are a few of the many languages that fit into this category. Scheme generally support both an interpreted as well as a compiled code. I think OCaml is like this too.
+
+An import aspect about interpreters for these languages is that the compiler writer has a lot of control over the runtime environment.
+
+Something else that is a hallmark of "high-level dynamic interperters" is that these systems come with an interactive shell or REPL (Read Eval Print Loop), that allows you to type in some code in the language and have that code run.
+
+In this kind of situation, here is how a debuggers typically works. The runtime system allows you register callback function which triggers whenever a particular event occurs. Here, events are things like calls and returns from functions, raising exceptions, user-defined breakpoint, after each "instruction" (this is usually not done though), and finally, before each new "statement". I use "statement" very loosely. In too many systems, like Python and Perl5, among others, it is everytime an instruction changes line number. And in fact the mapping from instruction to source code is called "line number" table.
+
+One thing I would like to advocate is moving for is moving away from the term "line number. I don't have a good replacement term for this though. If someone has suggestions, please let me know.
+
+Given this special environment, here is the design for a simple debugger. Wrap the program you want to run around some code that registers callbacks. And then inside the callback function instropsect on the current call stack, to get position and variable information as needed. Then bascially you can go into REPL which isn't all that different from the shell that the programming environment already provides. You might provide additional functions for stack introspection, and setting breakpoints, and showing or setting aspects around the debugger environment.
+
+In providing a commands, I suggest building off some existing debugger command language. For the debuggers I've written, I modelled them off of `gdb`. By doing this you not only get a guide towards what commands to provide, but you also make it easier for your users to do compilicated things more quickly, if they already know `gdb`. And if they don't, should they have to use `gdb` in the future, they will have to learn less.
+
+Not only does this make it easer for humans to understand your debugger, but it makes it easier for programs to do so as well! Here is an amusing story. After I wrote a debugger for bash, I though I'd hook it into the debugger front-end system that was popular 20 years ago or so called `ddd`. It didn't have a single configuration file for specifying characteristics of your debugger, there were just about 100 places of C++ code that you had to change. So I'd search to find what code was gdb-specific. And then I added, code of the form "and do that for my bash debugger as well". After I got this done, I was was surprised so see that on its own it created a custom "debugger settings" page which had the names of all of the setting that could be changed in the program, but I had never entered this explicity. How did it know this?
+
+What it did was doing was running a _help_ command to get a list of all of the settings, and then issuing a command to show the value of each one, and then parsing the output to determine the *type* the setting in order to make a custom boolean checkbox or a radio box or integer slider!
+
+Now I want to talk about supporting breakpoints. This simplest and most straightforward way to support breakpoints and the other callback events is simply to augment the interpreter with a test to see if a debug or trace flag has been set. The problem with this is that it can add a lot of overhead. Especially if this test is done every virtual instruction or every source-mapping change.
+
+One simple and often used solution to speed this kind of thing up is to have two interpreters, one that contains the checks and one that doesn't. When debugging is turned on, or turned on for some particular function or module, then the debug interperter is used. In Lisp, OCaml and other systems which support compiled and interpreted code this is one way that they support better run-time debugging.
+
+Suggestions
+-----------
+
+  - Include a way to get the container in a positions. Note: Containers don't change that often, and sometimes they stay the same for an entire program.
+    But see for example how DWARF handles this, or etherium solidity.
+  - Have a way to verify the source text that the user sees is the one that the compiler used.
+  - Use better granularity in positions than a line number. line column (or offset), and better yet consider ranges.
+  - Design Keeping in mind how one might add a debugger. Adding a debugger generally forces more accurate positions.
+  - If you do write a debugger, please don't invent a new command-language and terminology. Please follow one of the existing debuggers that exist. I have used `gdb`.
+  - If you are using bytecode consider adding a DEBUG opcode which runs a "breakpoint" callback.
 
 
+Wrap up
+-------
 
-Mention it used in my Python debugger's decompile command.
+For me this kind of talk is a little bit of a one off. A lot of this was purely descriptive. And defining and describing things is not my kind of thng.
+
+Personally, I'd rather give a talk involving some clever algorithm I've used, like how to reconstruct how to write a decompiler grammar or how to use dominitor regions to reconstruct control flow more precisely.
+
+But this topic is just not something that is described much. It's not in many of the compiler books. And if it is described it is usually in cursory way specific a specific compiler system for that book.
+
+So it shouldn't be surprising that it is not taught in classes either. And it shouldn't be surprising that it often doesn't appear in new programming languages, and when it does appear things are ad hoc. Both Python and Ruby made kind the same position-reporting misfeature in reporting the location of a multi-line string. And both were fixed independently. I think this kind of thing could have been avoided, this kind of thing were more rote, like it is for scanning and parsing.
+
+I hope with this some of you will start to include something about debugging and run-time support for debugging in academic classes. And if you are writing or revising a compiler book, I hope you would add a section on this topic too.
+
+Since I am retired, I am available for help. If you want to to give a lecture on how to add debug support for the course compiler system, I am probably available. Ditto for writing a chapter in a compiler book.
+
+
+Thanks
+------
+
+Jane Street and Organizers
+
+Thanks for listening.
+
+
+Links
+-----
+
+* DYLA 2010 paper
+* DWARF standard
+* Vassar college OCAML code
+* Vassar college talk
+* bashdb
+* trepan3k
+* PyCon 2018 Columbia talk

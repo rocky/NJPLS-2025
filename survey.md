@@ -1,7 +1,7 @@
 1. Have written a compiler or have been part of a compiler-development team?
    If so, what compiler?
 
-2. Have you taught a compiler course or were an assitant for such a course?
+2. Have you taught a compiler course or were a teaching assistant for a compiler course?
    [currently teach] [have taught in the past] [was an assistant for a course]
 
 3. Which compiler book(s) were used in the course. Or which books were used in compiler courses that you've taken.
