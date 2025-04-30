@@ -15,7 +15,7 @@ Let me start off with a little Survey.
 
 2. Please raise if you have taught a compiler course or were an assistant for a compiler course?
 
-3. Please raise your hand if the compiler course you took mentioned debuggers. decompilers?
+3. Please raise your hand if the compiler course you took described debuggers, not more detail than a passing remark.
 
 4. Or what it takes to support run-time debugging
 
