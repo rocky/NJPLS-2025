@@ -32,9 +32,18 @@ However, I don't think you'll find this available or packaged in a form that som
 
 Compare this with vast amount of information on writing a compiler, structuring it into phases consisting of scannering, parsing, producing intermedate code, and then either interpreting this or producing low-level code from the intermediate language. Not only is there a broad description of how to write a compiler by breaking compilation into phases, but there is a lot of detail for how to write each of those phases.
 
-Here are some popular current books on compilers.
+Here are some books on compilers.
 
-None of these, as far as I know have anything regarding run-time support for debugging, let alone debuggers.
+None of these, as far as I know describe run-time support for debugging, let alone debuggers.
+
+Some of them these books are out of print. But That just to shows that the situation is not new
+
+Some bookes mention that debugging ability changes depending on the level of optimization.
+
+When debuggers is mentioned it sometimes feel like this is a separate department.
+This reminds me of a couple of places where I worked where the department of computer backups was a separate department from the department of restores.
+
+Like debeuggers are in the department of backup restores as
 One of the books on advanced optimization, mentions that optimization can obscure mapping from the source text to the code.
 
 
