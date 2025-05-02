@@ -1,37 +1,48 @@
 <section>
 
-  <h1>Positions: Location, Location, Location...</h1>
-  <br/>
+  <h1>Position Information: Location, Location, Location...</h1>
 
-  <div align="left" class="fragment">
-    <p>In everyday life, a location (which I will call a <em>position</em>) is a street address:</p>
-  <br>
-  <p style="text-indent: 30px">
-    1600 Pennsylvania Avenue, Apartment 4F</p>
-  <p style="text-indent: 30px">
-    Washington D.C. 20000</br>
-  </p>
+  <div align="left">
+    <p>
+      Formally, we need a mapping from compiler-produced instructions to <em>positions</em> in the source text.
+    </p>
+
+    <p class="fragment">
+      But what is a source-text position?
+    </p>
+
+    <div align="left" class="fragment">
+      <p>In everyday life, a location (which I will call a <em>position</em>) is a street address:</p>
+      <br>
+      Jane Street Capital<br>
+      250 Vesey Street<br>
+      New York, New York<br>
+    </div>
   </div>
 
   <br/>
 
   <aside class="notes">
     <font size="3.0em">
-    <p>
-      We now have a <em>general</em> idea of what we need to do: associate
-      specific spots in the assembly code with specific spots the
-      source code.
-    </p>
-
-    <p align="left">But what is a position?
+    <p>So with this background, let us dig in. One thing a compiler
+      needs to provide a debugger, or error crash routine is a mapping
+      from a given instruction, the current Program Counter (PC), or
+      the PC where an error occurred to a place or position in the
+      source text.
       <div style="color: blue; background-color:
 		  LightYellow">
 	[DOWN fragment reveal] 7.1 ⟶ 7.1
       </div>
     </p>
-    <p>It is analogous to a street address.
-      A position can be broken down parts.
-      but I will focus on two top-level pieces...</p>
+    <p>But what is a position?
+      <div style="color: blue; background-color:
+		  LightYellow">
+	[DOWN fragment reveal] 7.1 ⟶ 7.1
+      </div>
+    </p>
+    <p>It is analogous to a street address. Note that an address
+      hierarchical in nature. The same is true for a position. It can be broken down into several
+      parts which are contained inside each other.
     <div style="color: blue; background-color:
 		LightYellow">
       [DOWN] 7.1 ⟶ 7.2
@@ -42,41 +53,39 @@
 
 <section>
 
-  <h1>Positions: Location, Location, Location...</h1>
+  <h1>Position Information: Location, Location, Location...</h1>
   <br/>
 
   <div align="left">
-  <p>In everyday life, a location (which I will call a <em>position</em>) is a street address:</p>
-  <br>
-  <p style="text-indent: 30px">
-    1600 Pennsylvania Avenue, Apartment 4F</p>
-  <p style="text-indent: 30px">
-    <b><em>Washington D.C. 20000</em></b>
-  </p>
+    Jane Street Capital<br>
+    250 Vesey Street<br>
+  </div>
+  <div align="left" style="background-color: #ffd700; color: black" >
+    New York, New York<br>
   </div>
 
   <br/>
 
   <div align="left">
-  <p class>A <em>position</em> can be broken down into
+  <p class>A <em>position</em> is hierachical and can be broken down into
   several parts, but I will focus on just two parts:
     <ol align="left">
-      <li class=>&nbsp; <b>A <em>container</em></b></li>
-    </ol>
+      <li style="background-color: #ffd700"><div style="color: black">&nbsp;A <em>container</em></div></li>
+     </ol>
   </p>
   </div>
 
   <aside class="notes">
     <font size="3.0em">
-    <p>The first piece of information I will call
-      a <em>container</em>. In the example above, it is
-      the <em>bottom-most</em> portion. "Washington D.C. Twenty Thousand".
+      <p>
+	I will focus on just top-level two parts. The first outermost
+      piece of information I will call a <em>container</em>. In the
+      example above, it is the <em>bottom-most</em> portion. "New
+      York, New York".
     </p>
     <p>
       The most common example of a container for a <em>program</em> is
-      a <em>file name</em>. But we will go into this in more detail soon,
-      and I'll ask for thoughts on <em>other</em> kinds of containers for
-      programs. So think about this, and how they can arise.
+      a <em>file name</em>.
       <div style="color: blue; background-color:
 		LightYellow">
 	[DOWN] 7.2 ⟶ 7.3
@@ -85,123 +94,42 @@
     </font>
   </aside>
 </section>
-
 <section>
 
-  <h1>Positions: Location, Location, Location...</h1>
+  <h1>Position Information: Location, Location, Location...</h1>
   <br/>
 
-  <div align="left">
-  <p>In everyday life, a location (which I will call a <em>position</em>) is a street address:</p>
-  <br>
-  <p style="text-indent: 30px">
-    <b><em>1600 Pennsylvania Avenue, Apartment 4F</em></b>
-  <p style="text-indent: 30px">
-    Washington D.C. 20000
-  </p>
+  <div align="left" style="background-color: #0057b7">
+    Jane Street Capital<br>
+    250 Vesey Street<br>
+  </div>
+  <div align="left" style="background-color: #ffd700; color: black" >
+    New York, New York<br>
   </div>
 
   <br/>
 
   <div align="left">
-  <p class>A <em>position</em> can be broken down into
+  <p class>A <em>position</em> is hierachical and can be broken down into
   several parts, but I will focus on just two parts:
     <ol align="left">
-      <li class=>&nbsp; A <em>container</em></li>
-      <li>&nbsp; <b>A <em>location</em> inside the container</b></li>
+      <li style="background-color: #ffd700"><div style="color: black">&nbsp;A <em>container</em></div></li>
+      <li style="background-color: #0057b7">
+	&nbsp;A <em>location</em> inside a container</div></li>
     </ol>
   </p>
   </div>
 
   <aside class="notes">
     <font size="3.0em">
-      <p>The second group of information inside a position, is probably
-	the thing that most people naturally think of...
-	a place or <em>location</em> inside a container.
-      </p>
-      <p>So now let's break down what a container is...
-	<div style="color: blue; background-color:
-		    LightYellow">
-	  [DOWN] 7.3 ⟶ 8.1
-	</div>
-      </p>
+    <p>The other broad piece of information I'll call a <i>location</i> which is
+      the place inside a container. This is what most compiler writers think of as a position In the example above, it is
+      the top part Jane Street Capital. 250 Vesey Street.
+      <div style="color: blue; background-color:
+		LightYellow">
+	[DOWN] 7.2 ⟶ 7.3
+      </div>
+    </p>
     </font>
   </aside>
-</section>
-
-<section>
-  <h1>What are Containers?</h1>
-
-  <p align="left">Some possibilities:
-    <ul>
-      <li>a file in a file system,</li>
-      <li class="fragment">a stream from a socket or piped into a compiler,</li>
-      <li class="fragment">a piece of an "archive"-format file:
-          Java classfile <tt>jar</tt>, Python <tt>wheel</tt>
-          (<tt>zip</tt>), or machine-code library, etc.,</li>
-      <li class="fragment">a string or AST data-structure created inside a program
-          at runtime, e.g. HTML templating system for Web framework, an
-          AI auto-learning system</li>
-    </ul>
-  </p>
-
-  <aside class="notes">
-    <font size="4.em">
-    <p>Program source code comes from <em>somewhere</em>. It is useful
-    for the programmer and IDE's to know <em>where</em> it came
-    from. So what are some possibilities? As I said before, a file in
-    the file system is the most common possibility. Any other
-    suggestions? [Solicit ideas...]
-    <div style="color: blue; background-color:
-		LightYellow">
-      [DOWN fragment reveal] 7.2 ⟶ 7.2
-    </div>
-    </p>
-
-    <p>a stream from a socket which might happen in remote
-      execution. Or a stream piped into a compiler
-    <div style="color: blue; background-color:
-		LightYellow">
-      [DOWN fragment reveal] 7.2 ⟶ 7.2
-    </div>
-    </p>
-
-    <p>a piece of an archive-format file. In Java this is called "class file" or
-      <tt>jar</tt> file and is encoded like a <tt>zip</tt>
-      file. Python <tt>wheels</tt> are zip files too.  Machine code
-      libraries are collections too, they are in a format called
-      "archive" and are built using the command Aee R in Linux. Note:
-      the word, "jar" used by Java the word is a modification of (Aee
-  v      R) in machine code. So "jar" stands for "Java archive" and you
-      may have heard about a "tar" file which stands for "tape
-      archive" even though nowadays physical tapes are no longer used.
-    <div style="color: blue; background-color:
-		LightYellow">
-      [DOWN fragment reveal] 7.2 ⟶ 7.2
-    </div>
-    </p>
-
-    <p>Another possibility is a string or AST data-structure created
-      inside a program at runtime, for example an HTML templating
-      system for Web framework, or AI self-modying code in an
-      auto-learning system.
-    </p>
-
-    <p>In the 331 language, programs come from a file stored in your
-      file system. So we won't dwell further on the containers. But
-         note that while locations inside a container change bit, the
-      container itself doesn't change that often. This is useful to
-      keep in mind when designing a data structure for positions.
-    </p>
-
-    <p>In the 331 language, there is only one container. The standard
-    runtime data format which we will talk about later, provides for
-    file path. It also understands that file paths are contained inside a
-    directory.
-    <div style="color: blue; background-color:
-		LightYellow">
-      [NEXT] 7.2 ⟶ 8.1
-    </div>
-    </p>
-</aside>
 </section>

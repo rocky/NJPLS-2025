@@ -87,7 +87,7 @@ Informally, it like a street address, like  250 Vesey St, New York, NY.
 
 Street addresses are hierarchical. 250 is a building number on Vesey Street. Vesey Steet is one of the Streets in New York City. And NYC is one of the cities in New York.
 
-Although, I don't think this idea has been widely disseminated for progarms, a position inside programs I think should be thought of as being hierarchical too. I'll say more about this later, but the first broad subdivision is between *container* of the position, and the *location* inside that container.
+Although, I don't think this idea has been widely disseminated for programs, a position inside programs I think should be thought of as being hierarchical too. I'll say more about this later, but the first broad subdivision is between *container* of the position, and the *location* inside that container.
 
 The source text of a program can come from a number of places, and it is useful know where it came from. The most common situation is a file in a file system. But the program could have also been entered interactively. The program might be a member inside an archive-format file. In Java, "jars" hold Java classes. In Python, "wheels" are compressed zip-formatted archive files.
 

@@ -1,0 +1,76 @@
+<section>
+  <h1>Kinds of Containers</h1>
+
+  <p align="left">
+    <ul>
+      <li class="fragment">a file in a file system,</li>
+      <li class="fragment">a stream from a socket or piped into a compiler,</li>
+      <li class="fragment">a piece of an "archive"-format file:
+          Java classfile <tt>jar</tt>, Python <tt>wheel</tt>
+          (<tt>zip</tt>), or machine-code library, etc.,</li>
+      <li class="fragment">a string or AST data-structure created inside a program
+          at runtime, e.g. HTML templating system for Web framework, an
+          AI auto-learning system</li>
+    </ul>
+  </p>
+
+  <aside class="notes">
+    <font size="4.em">
+      <p>
+	Program source code comes from <em>somewhere</em>. It is useful
+	for the programmer and IDE's to know <em>where</em> it came
+	from. So what are some possibilities?
+
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN fragment reveal] 7.2 ⟶ 7.2
+	</div>
+      </p>
+      <p>
+	As I said before, a file in the file system is the most common
+	possibility.
+      </p>
+      <p>A problem I see in many systems, is a weakness in being able to deal
+	with positions when working containers other than a file in a filesystems.
+
+      </p>
+      <p> So let's go into other kinds of containers.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN fragment reveal] 7.2 ⟶ 7.2
+	</div>
+      </p>
+
+    <p>a stream from a socket which might happen in remote
+      execution. Or a stream piped into a compiler. The weakness I see
+      here is an inability of the system to be able to show the source
+      text in an IDE. Here, input is often one line long. So it is
+      useful to be able to give position information in finer granularity just a line.
+    <div style="color: blue; background-color:
+		LightYellow">
+      [DOWN fragment reveal] 7.2 ⟶ 7.2
+    </div>
+    </p>
+
+    <p>a piece of an archive-format file. In Java, "class file" are
+      <tt>jar</tt> files. In Python, <tt>wheels</tt> are zip files.
+    <div style="color: blue; background-color:
+		LightYellow">
+      [DOWN fragment reveal] 7.2 ⟶ 7.2
+    </div>
+    </p>
+
+    <p>Another possibility is a string or AST data-structure created
+      inside a program at runtime, for example an HTML templating
+      system for Web framework, or AI self-modying code in an
+      auto-learning system.
+    </p>
+    <p>Again, IDE's and debuggers are often weak in being able to show
+    source text when the container is of this type.
+    <div style="color: blue; background-color:
+		LightYellow">
+      [NEXT] 7.2 ⟶ 8.1
+    </div>
+    </p>
+</aside>
+</section>
