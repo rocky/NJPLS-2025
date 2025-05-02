@@ -1,0 +1,43 @@
+<h1>Decompiling to get more Precise Position Information</h1>
+<section>
+  <div align="left">
+    <p>
+      <div class="asciicast">
+	<!--
+	    {
+	    "URL": "cast/divide-example.cast",
+	    "idle_time_limit": 0.5,
+	    "font-size": "18px",
+	    "theme": "solarized-light",
+	    "start":12,
+	    "speed":1.5,
+	    "poster": "npt:1:23"
+	    }
+	  -->
+      </div>
+    </p>
+  </div>
+  <aside class="notes">
+    <font size="3.0em">
+      <p>
+	Can anything be done to get more accurate position numbers in
+	those programming languages that only report line numbers, like
+	Perl or the versions of Python for the first 25 years? Actually,
+	yes.
+      </p>
+
+
+      <p>
+	What I have done for both of these, is write a
+	decompiler. This starts out with the code produced and
+	reconstructs source code. This is easier done when high-level
+	bytecode is involved as in the case of Python, or where the
+	interpretation is done on a tree structure which happens in
+	Perl5 and Korn Shell.
+      </p>
+
+      <p>After writing the decompiler, I then hooked this into a gdb-like debugger.
+      </p>
+    </font>
+  </aside>
+</section>

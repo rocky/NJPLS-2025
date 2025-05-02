@@ -158,7 +158,7 @@ I'm just showing the difference between *Sexp* and *Sexp.Annotated*, which is co
 
 There's what you get now.
 
-And if you jut put in that *Annotated* in there, you get that instead.
+And if you just put in that *Annotated* in there, you get that instead.
 
 Here, I have copied the output line, and I reformatted it. So it is easier to understand.
 *Sexp.Annotated.Atom* goes from being a string into now a tuple. And the first element of this tuple is this is a *range*.
