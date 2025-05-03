@@ -1,0 +1,52 @@
+<h1> Debugger pattern for High-level Dynamic-Language Interpreters</h1>
+<section>
+  <div align="left">
+    <p>
+      What is a a High-Level Dynamic Language Interpreter?
+    </p>
+
+    <ul>
+      <li>Typically has an <i>eval()</i> or <i>exec</i> function</li>
+      <li>This allows it to support an interactive shell</li>
+      <li>Has introspection, e.g. looking at call stack</li>
+      <li>Often runs of of a high-level form (bytecode, tree-evaluator)
+    </ul>
+  </div>
+<aside class="notes">
+  <p>
+    <div style="color: blue; background-color:
+		LightYellow">
+      [DOWN for line highlight] 13.1 ⟶ 13.1
+      [NEXT] 13.1 ⟶ 13.2
+    </div>
+  </p>
+</aside>
+</section>
+<section>
+  <div align="left">
+    <p>
+      Debugger pattern.
+    </p>
+
+    <pre>
+      <code class="hljs python">
+      def callback_hook(event):
+         instrospect stack;
+         if event and stack indicate something we are interested in:
+           run interactive command loop make use of eval/exec
+      register_callback(callback_hook)
+    </code>
+    </pre>
+  </div>
+<aside class="notes">
+  <p>
+    And <em>FINALLY</em> we can run the code. When we do, we affirm
+    that 1 plus 1 is still two in the 331 language.
+    <div style="color: blue; background-color:
+		LightYellow">
+      [DOWN for line highlight] 13.1 ⟶ 13.1
+      [NEXT] 13.1 ⟶ 13.2
+    </div>
+  </p>
+</aside>
+</section>

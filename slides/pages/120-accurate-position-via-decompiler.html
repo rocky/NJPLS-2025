@@ -38,6 +38,38 @@
 
       <p>After writing the decompiler, I then hooked this into a gdb-like debugger.
       </p>
+
+      <p>First, I show the source text. It is what we had before, an
+      expression with two divisions that raises a *ZeroDivision* error
+      when run. When I run it using Python, not only do we get just
+      the line number, but we get the *wrong* line number! This has
+	been fixed though in Python 3.13.
+      </p>
+
+      <p>
+      I run it under a debugger I wrote, called <i>trepan3k</i> so
+      that when there is an error, it goes into the debugger's
+      post-mortem handling. In that, there is a `deparse` command
+      which takes deparses the program. For this it uses a grammar and
+      builds a parse tree and from the instructions. Based on this
+      parse tree, we can associate a range of source text.
+      </p>
+
+      <p>
+	The <i>--parent</i> option is just showing the parent text in
+	addition to the text associated with the instruction.
+      </p>
+
+      <p>
+	Previously we mentioned that containers are heirarchical. But
+	here, we see that locations *inside* containers can also be
+	thought of as being heirarchical in the sense of its parse
+	tree.
+      </p>
+
+      <p>I have glossed over a lot of detail here, the last slide has
+      links for more information and detail.</p>
+
     </font>
   </aside>
 </section>
