@@ -23,26 +23,32 @@
   <br/>
 
   <aside class="notes">
-    <font size="3.0em">
-    <p>So with this background, let us dig in. One thing a compiler
-      needs to provide a debugger, or error crash routine is a mapping
-      from a given instruction, the current Program Counter (PC), or
-      the PC where an error occurred to a place or position in the
-      source text.
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN fragment reveal] 7.1 ⟶ 7.1
-      </div>
-    </p>
+    <font size="5.0em">
+      <p>So with this background, let us dig in.
+      </p>
+
+      <p>
+	One thing a compiler needs to provide a debugger, or error
+	crash routine is a mapping from a given running instruction or the
+	instruction where an error occurred, to a
+	place or position in the source text.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN fragment reveal] 7.1 ⟶ 7.1
+	</div>
+      </p>
+
     <p>But what is a position?
       <div style="color: blue; background-color:
 		  LightYellow">
 	[DOWN fragment reveal] 7.1 ⟶ 7.1
       </div>
     </p>
-    <p>It is analogous to a street address. Note that an address
-      hierarchical in nature. The same is true for a position. It can be broken down into several
-      parts which are contained inside each other.
+    <p>It is analogous to a street address. Note that a street address
+      hierarchical in nature.</p>
+
+    <p>The same is true for a position. It can be broken down into
+      several parts which are contained inside each other.
     <div style="color: blue; background-color:
 		LightYellow">
       [DOWN] 7.1 ⟶ 7.2
@@ -70,18 +76,20 @@
   <p class>A <em>position</em> is hierachical and can be broken down into
   several parts, but I will focus on just two parts:
     <ol align="left">
-      <li style="background-color: #ffd700"><div style="color: black">&nbsp;A <em>container</em></div></li>
+      <li style="background-color: #ffd700"><div style="color: black">&nbsp;A <em>container</em></div></li>...
      </ol>
   </p>
   </div>
 
   <aside class="notes">
-    <font size="3.0em">
+    <font size="5.0em">
       <p>
-	I will focus on just top-level two parts. The first outermost
-      piece of information I will call a <em>container</em>. In the
-      example above, it is the <em>bottom-most</em> portion. "New
-      York, New York".
+	I will focus on just top-level two parts
+      </p>
+
+      <p>The outer-most piece of information I will call
+      a <em>container</em>. In the example above, it is
+      the <em>bottom-most</em> portion. "New York, New York".
     </p>
     <p>
       The most common example of a container for a <em>program</em> is
@@ -110,7 +118,7 @@
   <br/>
 
   <div align="left">
-  <p class>A <em>position</em> is hierachical and can be broken down into
+  <p class>A <em>position</em> is hierarchical and can be broken down into
   several parts, but I will focus on just two parts:
     <ol align="left">
       <li style="background-color: #ffd700"><div style="color: black">&nbsp;A <em>container</em></div></li>
@@ -121,10 +129,11 @@
   </div>
 
   <aside class="notes">
-    <font size="3.0em">
+    <font size="5.0em">
     <p>The other broad piece of information I'll call a <i>location</i> which is
-      the place inside a container. This is what most compiler writers think of as a position In the example above, it is
-      the top part Jane Street Capital. 250 Vesey Street.
+      the place inside a container. This is what most compiler writers think of as a position</p>
+    <p>In the example above, it is the top part: Jane Street
+      Capital. 250 Vesey Street.
       <div style="color: blue; background-color:
 		LightYellow">
 	[DOWN] 7.2 ⟶ 7.3

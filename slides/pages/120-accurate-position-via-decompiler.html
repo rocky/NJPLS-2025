@@ -18,17 +18,17 @@
     </p>
   </div>
   <aside class="notes">
-    <font size="3.0em">
+    <font size="4.0em">
       <p>
 	Can anything be done to get more accurate position numbers in
 	those programming languages that only report line numbers, like
-	Perl or the versions of Python for the first 25 years? Actually,
-	yes.
+	Perl or the versions of Python for the first 25 years?</p>
+      <p>Actually, yes.
       </p>
 
 
       <p>
-	What I have done for both of these, is write a
+	What I have done in Perl5 and Python, is write a
 	decompiler. This starts out with the code produced and
 	reconstructs source code. This is easier done when high-level
 	bytecode is involved as in the case of Python, or where the
@@ -39,36 +39,47 @@
       <p>After writing the decompiler, I then hooked this into a gdb-like debugger.
       </p>
 
-      <p>First, I show the source text. It is what we had before, an
-      expression with two divisions that raises a *ZeroDivision* error
-      when run. When I run it using Python, not only do we get just
-      the line number, but we get the *wrong* line number! This has
-	been fixed though in Python 3.13.
+      <p>
+	First, I show the source text. It is what we had before, an
+	expression with two divisions that raises
+	a <i>ZeroDivision</i> error when run. When I run it using
+	Python, we just get just the line number 2. No indication
+	of <i>which</i> divide raised an error.  In Python 3.13, this
+	has been fixed though.
       </p>
 
       <p>
-      I run it under a debugger I wrote, called <i>trepan3k</i> so
-      that when there is an error, it goes into the debugger's
-      post-mortem handling. In that, there is a `deparse` command
-      which takes deparses the program. For this it uses a grammar and
-      builds a parse tree and from the instructions. Based on this
-      parse tree, we can associate a range of source text.
+	Next, I run it under a debugger I wrote, called <i>trepan3k</i> so
+	that when there is an error, it goes into the debugger's
+	post-mortem handling. In that, there is a <i>deparse</i> command
+	which takes deparses the program. For this it uses a grammar and
+	builds a parse tree and from the instructions. Based on this
+	parse tree, we can associate a range of source text.
       </p>
 
+      <p>Here, we see <i>which</i> divide errored.</p>
       <p>
 	The <i>--parent</i> option is just showing the parent text in
-	addition to the text associated with the instruction.
+	addition to the text associated with the instruction. If the first
+	divide errored the parent context would have been: <i>6 / x</i>.
       </p>
 
       <p>
-	Previously we mentioned that containers are heirarchical. But
-	here, we see that locations *inside* containers can also be
-	thought of as being heirarchical in the sense of its parse
-	tree.
+	Previously we mentioned that containers are
+	heirarchical. Here, we see that locations <i>inside</i>
+	containers can also be thought of as being heirarchical when viewed
+	from the standpoint of the program structure or parse tree.
       </p>
 
       <p>I have glossed over a lot of detail here, the last slide has
-      links for more information and detail.</p>
+	links for more information and detail.
+
+
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [NEXT] 12.1 ⟶ 13.1
+    </div>
+      </p>
 
     </font>
   </aside>

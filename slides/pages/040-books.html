@@ -35,30 +35,36 @@
     decompilers, nor runtime support for debugging
   </p>
   <aside class="notes">
-    <p>Today, I'd like to talk a little bit about what a compiler needs
-      to do to provide error position information at run time. And what
-      is needed to support run-time debugging.</p>
+    <p>Today, I will mostly talk only a <i>little</i> bit about what a
+      compiler should consider to provide error-position information
+      at run time. But I'll try to broaden this a little and mention
+      support run-time debugging more generally.</p>
 
-    <p>Here are some popular book compilers of the many that are out.
-      Please raise your hand if you've read any of these books? (I'm in a survey kind of mood today).
+    <p>Here are just a <i>few</i> of the book on compilers of the many
+      that exist. I've tried to include the more popular books. But if
+	  I missed some you can let me know afterwards.</p>
+    <p>Please raise your hand if you've read any of these books? (I'm
+      in a survey kind of mood today).
     </p>
 
-    <p>I would <em>love</em> to report that what I am going to say here you
-      can find in greater about run-time support for debugging detail
-      in <em>any</em> of these compiler books.
+    <p>I would <em>love</em> to report that what I am going to say
+      here you can find in greater detail in <em>any</em> of these
+      compiler books.
       <div style="color: blue; background-color:
    		  LightYellow">
 	[DOWN Fragment] 4.1 ⟶ 4.1
       </div>
     </p>
 
-    <p>But you can't. And that's a big part of why I am here. I could
-      have included probably at least two dozen more books.  I have
-      here some books that are out of print. But this just shows that
-      this phenonemon is not new. I also have some rather specialized
-      books, such as one Pascal, or advanced compiler writing. But you
-      won't a specialized compiler book that includes information on
-      debugging support and debuggers.
+    <p>
+      But you can't. And that's a big part of why I am here. I could
+      have included probably at least two dozen more books.</p>
+    <p>
+      I have here some books that are out of print. But this just
+      shows that this phenonemon is not new. I also have some rather
+      specialized books, such as one Pascal, or advanced compiler
+      writing. But you won't find a specialized <i>compiler</i> book
+      that includes information on debugging support and debuggers.
       <div style="color: blue; background-color:
 		  LightYellow">
 	[DOWN] 4.1 ⟶ 4.1
@@ -87,41 +93,62 @@
 	 style="vertical-align: middle" height="200">
   </p>
 <aside class="notes">
-  <p>
-    When I searched for "debuggers" on <code>Amazon.com</code> books, here is is what turns up.
-  </p>
-  <p>
-    The book on building a debugger is about an Intel x86 debugger; it does not seem to be
-    hooked into a compiler or language.
-  </p>
+  <font size="4.0em">
+    <p>
+      When I searched for books on "debuggers" on <code>Amazon.com</code>, here is is what turns up.
+    </p>
+    <p>
+      The book in the middle, "Building a Debugger", is about an Intel x86 debugger; it does not seem to be
+      hooked into a compiler or language.
+    </p>
 
-  <p>
-    The book on <i>gdb</i> is most-likley the
-    <i>gdb</i> manual, possibily massaged a little.
+    <p>
+      The book on <i>gdb</i> is most-likley the
+      <i>gdb</i> manual, possibily massaged a little.
+      <div style="color: blue; background-color:
+   		  LightYellow">
+	[DOWN Fragment] 4.2 ⟶ 4.2
+      </div>
+    </p>
+
+    <p>
+      The first book "How Debuggers Work", I have a quote from the a
+      review, which you can read here.</p>
+
     <div style="color: blue; background-color:
-   		LightYellow">
-      [DOWN Fragment] 4.2 ⟶ 4.2
+		LightYellow">
+      [DOWN] 4.2 ⟶ 4.2
     </div>
-  </p>
 
-  <p>The first book "How Debuggers Work", I quote from the a review, which you can read here. The prevailing view found in compiler books
-    and debugger books is that these are <i>separate</i> topics that not very much related to one another.
-  </p>
-  <p>
-    This reminds me of a couple of places where I worked where the
-    department of computer backups was a separate department from the
-    department of computer restores.  The backup group was group to
-    work in &mdash; the atomosphere was causal and relaxed. The department of
-    restores group was always under constant pressure and never could
-    get its act together. It feels to me, this is the current
-    situation with debuggers for too many compilers.
+    <p>These are two books, that do describe debuggers as part of the
+      compiler. But the topic is specific for the compiler system that
+      is the focus of the book. I wonder how many people are familiar
+      with this. [I won't ask for a survey here.]
+    </p>
+
+    <p>
+      The prevailing view found in compiler books and debugger books, is
+      that these are <i>separate</i> topics.
+    </p>
+    <p>
+      This reminds me of a couple of places where I worked, where we had
+      separate departments for computer backups and computer
+      restores.</p>
+    <p>
+      The first group, backup software, was group to work in &mdash;
+      the atomosphere was causal and relaxed.</p>
+
+    <p>
+      In contrast, the department-of-restores group was always under
+      constant pressure and never could get its act together.</p>
+
+    <p>It feels to me that this is, too often, the current situation
+      with compilers and debuggers.
+    </p>
+
     <div style="color: blue; background-color:
 		LightYellow">
       [DOWN] 4.2 ⟶ 5.1
     </div>
-  </p>
-
-  <p>These are two books, that do describe debuggers as part of the compiler. How many people are familiar with these?
-    [Take a count of first book; and then second book].
-
+  </font>
 </aside>

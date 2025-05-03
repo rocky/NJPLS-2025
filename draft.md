@@ -263,9 +263,7 @@ Suggestions
 Wrap up
 -------
 
-For me this kind of talk is a little bit of a one off. A lot of this was purely descriptive. And defining and describing things is not my kind of thng.
-
-Personally, I'd rather give a talk involving some clever algorithm I've used, like how to reconstruct how to write a decompiler grammar or how to use dominitor regions to reconstruct control flow more precisely.
+For me, this kind of talk is a little bit of a one off. A lot of this was purely descriptive.
 
 But this topic is just not something that is described much. It's not in many of the compiler books. And if it is described it is usually in cursory way specific a specific compiler system for that book.
 
@@ -273,7 +271,7 @@ So it shouldn't be surprising that it is not taught in classes either. And it sh
 
 I hope with this some of you will start to include something about debugging and run-time support for debugging in academic classes. And if you are writing or revising a compiler book, I hope you would add a section on this topic too.
 
-Since I am retired, I am available for help. If you want to to give a lecture on how to add debug support for the course compiler system, I am probably available. Ditto for writing a chapter in a compiler book.
+Since I am retired, I am available for help. If you want to to give a lecture on how to add debug support for the course compiler system, I am probably available. Ditto for writing a chapter in a compiler book. I don't do weddings and bar-matzvah's yet.
 
 
 Thanks
