@@ -21,7 +21,7 @@
 
       <p>But this raises the possibility of another problem: the
 	source text that the compiler or interpreter read isn't the
-	same as what the programmer or rather programmer's IDE sees.
+	same as what the programmer's debugger or IDE sees.
 	<div style="color: blue; background-color:
 		    LightYellow">
 	  [DOWN File name is ambigous] 9.1 ⟶ 9.1
@@ -31,14 +31,14 @@
       <p>
 	For example, if an incomplete file name is given, but not the
 	directory that is under, this can lead to a mismatch. I have
-	encountered this problem many times. Therefore, in my debuggers
+	encountered this problem too many times. Therefore, in my debuggers
 	I always store a fully resolved file name as well as a mapping
 	from short name to full path name when the runtime-system
 	provides only a short file name.
       </p>
 
       <p>And over time, I have seen intrepeters shift from short name to
-      fully resolved file name.
+      fully resolved file name in storing filename in debugger information.
       </p>
 
       <p>
@@ -55,11 +55,10 @@
 	storage. Or course, this is not a problem if
 	the <i>contents</i> are the same. For example, if the file is
 	in a version-control system <em>and</em> it is the same
-	version, then we're okay. But we'd need to check that.
+	version, then we're okay. <em>But we'd need to check that!</em>
       </p>
-      <p>By the way, I would bet that the book on debuggers from 19
-	years ago, does not this problem involving files checked out from
-	version control systems.
+      <p>By the way, I would bet that this kind of thing is not
+	addressed in the book on debuggers from 19 years ago.
 	<div style="color: blue; background-color:
 		    LightYellow">
 	  [DOWN no access to source text] 9.1 ⟶ 9.1
@@ -101,8 +100,8 @@
     <p>
       Instead of storing the entire source text, Python stores a
       checksum or hash of the source text in its bytecode file. Python
-      selected its SIP hash function to be easy to
-      compute while keeping <i>low</i> the possibility false-positive collisions.
+      selected its SIP hash function to be easy to compute, while
+      keeping <i>low</i> the possibility false-positive collisions.
     </p>
 
     <p>

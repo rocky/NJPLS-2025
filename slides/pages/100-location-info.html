@@ -32,7 +32,7 @@ ZeroDivisionError: float division by zero
     </p>
 
     <p>
-      So to saying that there's an error on line one is given no
+      So saying that there's an error on line one is given no
       information at all.
     </p>
 
@@ -41,7 +41,8 @@ ZeroDivisionError: float division by zero
       program shell. Here is a session with Python 3.12:
     </p>
 
-    <p>Which divide caused the exception in line 1? No clue given here.
+    <p>There are two divides on the line. Which divide caused the
+    exception in line 1? No clue given here.
     </p>
     <p>
       I am pleased to report that in Python 3.13 this has been
@@ -53,10 +54,10 @@ ZeroDivisionError: float division by zero
     <p>
       Why it took over 25 years for Python to address something like
       this is sad. And if you try the same thing in Ruby or
-      Perl. You'll get something similar to the behavior above: where
-      you get a line number with no indication <i>where</i> on the
-      line, or <i>which</i> divide, the problem lies. Javascript will
-      say the computation is Infinity, so no error is raised.
+      Perl. You'll get something similar to the behavior above: you
+      get a line number with no indication <i>where</i> on the line,
+      or <i>which</i> divide, the problem lies. Javascript will say
+      the computation is Infinity, so no error is raised.
     </p>
 
     <p>
@@ -67,9 +68,9 @@ ZeroDivisionError: float division by zero
      from.
     </p>
 
-    <p>More useful is to specify a position as a range of text from the
-    start to end position. The Jane Street parsing library for
-      S-Expressions has this. So let's take a look at this.
+    <p>More useful is to specify a position as a <i>range</i> of text
+    from the start to end position. The Jane Street parsing library
+    for S-Expressions has this. So let's take a look at this.
       <div style="color: blue; background-color:
 		  LightYellow">
 	[NEXT] 10.1 ⟶ 11.1
