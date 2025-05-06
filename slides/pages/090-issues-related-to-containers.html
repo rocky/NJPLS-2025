@@ -24,21 +24,25 @@
 	same as what the programmer's debugger or IDE sees.
 	<div style="color: blue; background-color:
 		    LightYellow">
-	  [DOWN File name is ambigous] 9.1 ⟶ 9.1
+	  [DOWN File name is ambiguous] 9.1 ⟶ 9.1
 	</div>
       </p>
 
       <p>
 	For example, if an incomplete file name is given, but not the
 	directory that is under, this can lead to a mismatch. I have
-	encountered this problem too many times. Therefore, in my debuggers
-	I always store a fully resolved file name as well as a mapping
-	from short name to full path name when the runtime-system
-	provides only a short file name.
+	encountered this problem <i>too many</i> times.
+	</p>
+      <p>
+	Therefore, in my debuggers I always store a fully-resolved
+	file name, as well as a mapping from short name to full path
+	name when the runtime debug information only has a short file
+	name.
       </p>
 
-      <p>And over time, I have seen intrepeters shift from short name to
-      fully resolved file name in storing filename in debugger information.
+      <p>And over time, I have seen intrepreters shift from short name
+      to fully resolved file name in storing file paths in debugger
+      information.
       </p>
 
       <p>
@@ -91,7 +95,7 @@
 
   <aside class="notes">
     <p>One obvious way to avoid this kind of problem is to
-    store the source entire source text inside a debug file. The debug
+    store the entire source text inside a debug file. The debug
     tables for Etherium Solidity work this way. The downside of this
     is that it might lead to huge debug files. Solidity programs,
     however, are generally very short.
@@ -108,15 +112,15 @@
       In debug API protocols that work remotely, sometimes source text
       is sent across the network on request from the front-end. With
       this, a local IDE doesn't have to have the source text stored in
-      a file locally. A downside of this is that a lot of information
-      might be passed over the network if the front end does not cache
-      source text.
+      a file locally. A downside of this is that a <em>lot</em> of
+      information might be passed over the network if the front end
+      does not cache source text.
     </p>
 
     <p>
       Now that we've described containers, we can focus on the part
-      that most people think of when talking about a position: the
-      location inside that container.
+      that <i>most</i> people think of when talking about a position:
+      the location inside that container.
       <div style="color: blue; background-color:
 		  LightYellow">
 	[NEXT] 9.2 ⟶ 10.1
