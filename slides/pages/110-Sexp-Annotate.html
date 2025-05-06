@@ -18,22 +18,23 @@
 
   </div>
   <aside class="notes">
-    <p>Jane Street's OCaml sexplib module is one of the more enlighten
-    parsing modules provides an <code>Sexp</code> with additional
-    position information. This is done using a sub-module
-     <tt>Sexp</tt> called <tt>Sexp.Annotated</tt>.
+    <p>Jane Street developers wrote an OCaml module to parse
+     S-expressions.  The module is called <tt>Sexp</tt>. To get position
+    information, sub-module
+     <tt>Sexp.Annotated</tt> is used.
     </p>
-
 
     <p>Let me show that. Since looking at output can get long quickly,
     I am just going to show some the most trivial example, parsing a
     single atom. Even though this is simple, it's enough to get the
-    idea.</p>
+    idea. [RUN CODE]</p>
+
+
     <p>I'm just showing the difference between parsing without
     position information* and with position information using
-    *Sexp.Annotated*, which is coming up next.
+    <i>Sexp.Annotated</i>, which is coming up next.
 
-      <p>There's what you get without position information.</p>
+      <p>There is what you get without position information.</p>
 
       <p>And if you just put in that <i>Annotated</i> in there, you
       get that instead.</p>
@@ -41,7 +42,7 @@
 
     <div style="color: blue; background-color:
 		  LightYellow">
-      [DOWN] 11.2 ⟶ 11.3
+      [DOWN] 11.1 ⟶ 11.2
 
     </p>
   </aside>
@@ -77,24 +78,31 @@
 
   </div>
   <aside class="notes">
-    <p>Here, I have just copied and formatted the output from the OCaml session we just ran.</p>
+    <p>Here, I have just copied and formatted the output from the
+    OCaml session that we just ran.</p>
 
     <p>The <em>essential</em> difference in data structure between
-      Sexp and Sexp.Annotated is that
+      <tt>Sexp</tt>
       <div style="color: blue; background-color:
 		  LightYellow">
-	[DOWN line highlight] 11.3 ⟶ 11.3
+	[DOWN line highlight] 11.2 ⟶ 11.2
+      </div>
+
+      and <tt>Sexp.Annotated</tt> is that
+      <div style="color: blue; background-color:
+		  LightYellow">
+	[DOWN line highlight] 11.2 ⟶ 11.2
       </div>
       the Sexp.Annotated Atom is now a <em>tuple</em> and the first
       element of the tuple
       <div style="color: blue; background-color:
 		  LightYellow">
-	[DOWN line highlight] 11.3 ⟶ 11.3
+	[DOWN line highlight] 11.2 ⟶ 11.2
       </div>
       is now a <em>position record</em>.
       <div style="color: blue; background-color:
 		  LightYellow">
-	[DOWN line highlight] 11.3 ⟶ 11.3
+	[DOWN line highlight] 11.2 ⟶ 11.2
       </div>
     </p>
 
@@ -102,15 +110,15 @@
     position
       <div style="color: blue; background-color:
 		  LightYellow">
-	[DOWN line highlight] 11.3 ⟶ 11.3
+	[DOWN line highlight] 11.2 ⟶ 11.2
       </div>
       and an <em>end</em> position
     </p>
 
-    <p>Now let us look at the OCaml definition inside <tt>sexp_intf.ml</tt>
+    <p>Now let us look at the OCaml module definition.
       <div style="color: blue; background-color:
 		  LightYellow">
-	[NEXT] 7.2 ⟶ 8.1
+	[DOWN] 11.2 ⟶ 11.3
       </div>
     </p>
   </aside>
@@ -123,7 +131,7 @@
     <p align="left">
       <pre>
 	<code
- 	  data-line-numbers="1-100|16-19|10-14|3-8",
+ 	  data-line-numbers="1-100|16-19|10-14|3-8|1-100",
 	  data-ln-start-from="134",
 	  class="hljs ocaml",
 	  style="width: 1200px; max-height: 600px;">(** Module for parsing S-expressions annotated with location information *)
@@ -150,85 +158,91 @@
     </p>
 
   <aside class="notes">
-    <p>I will summarize what we see here; the structure is pretty straightforward.
+    <font size="3.5em">
+      <p>I will summarize what we see here, but the structure is pretty straightforward.
 
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN for line highlight] 11.4 ⟶ 11.4
-      </div>
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for line highlight] 11.4 ⟶ 11.4
+	</div>
+      </p>
 
-      There a type defined in <tt>Sexp.Annotate</tt>
-      called "Tee". It can be either an Atom or a List. This is
-      the same situation as in the parent module, Sexp, that the 331
-      compiler has been using. Both Atoms and Lists are tuple objects,
-      the <em>first</em> element contains a <em>range</em>. We saw
-      that before for in object shown before. The same kind if thing
-      also happens in a List.
+      <p>
+	There a type defined in <tt>Sexp.Annotate</tt>
+	called "Tee". It can be either an Atom or a List. This is
+	the same situation as in the parent module, <tt>Sexp</tt>.
+      </p>
 
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN for line highlight] 11.4 ⟶ 11.4
-      </div>
+      <p>
+	Both Atoms and Lists are tuple objects,
+	the <em>first</em> element contains a <em>range</em>. We saw
+	that in object shown in the last slide. The same kind if thing
+	also happens in a List.
 
-    <p>
-      And a range is a record with a "pos" type for
-      a start position and an end position.
-    </p>
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for range highlight] 11.4 ⟶ 11.4
+	</div>
+      </p>
 
-    <p>And a "pos" type here is a record with 3 things:
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN for line highlight] 11.4 ⟶ 11.4
-      </div>
-      a line number, a column number, and an "offset".
-    </p>
+      <p>
+	And a range is a record with a "pos" type for
+	a start position and an end position.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for pos highlight] 11.4 ⟶ 11.4
+	</div>
+      </p>
 
-    <p>The offset is basically a compact way to indicate both a line
-    number and an offset as one number — the number of byte from the
-      start of the program.</p>
+      <p>And a "pos" type here is a record with 3 things:
+	a line number, a column number, and an "offset".
+      </p>
 
-    <p>
-      Nowhere in sexplib do we have a place to store a container, that
-      I can see. So that is be done outside of this library.
-    </p>
+      <p>The offset is basically a compact way to indicate both a line
+	number and an offset as one number — the number of bytes from
+	the start of the program. In a way it is redundant with for
+	line and column. In some situations this might be more convenient.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for full program] 11.4 ⟶ 11.4
+	</div>
+      </p>
 
-    <p>Also, this library assumes that each parsed item lives in the
-    *same* container. This kind of thing would not be true in a C-like
-    language where there is macro form tokens and parsable text
-    fragments from many different "#include" files. However C and C
-    derivatives are a little bit odd in this respect. Most programming
-    languages do not allow this kind of mixed filename, or more
-    generally, container, inclusion.</p>
+      <p>
+	Nowhere in sexplib do we have a place to store a container, that
+	I can see. So that is be done outside of this library.
+      </p>
 
-    <p>What we see here, is that the Jane Street's scanning and
-    parsing library marks regions of text, called "ranges". If you are
-    writing an interpreter, you typically control the way debug
-    information is stored. So saving the entire range can be
-    done. Many interpreters such as for Python, Perl, or Ruby don't do
-    this though. But Etherium Solidity's debug tables do in fact
-    capture this.</p>
+      <p>Also, this library assumes that each parsed item lives in the
+	<i>same</i> container. This kind of thing would not be true in
+	a C-like language where the C-preprocessor can pull in text
+	from several <tt>#include</tt> files into a single compilation
+	unit. Even more weird, the C preprocesser allows for a single
+	token to come from more than one file.
+      </p>
 
-    <p>I you are compiling to machine code, the position information
-    will need to invariably be stored DWARF format which does not
-    support ranges.</p>
+      <p>
+	However C and C derivatives are a little bit odd in this
+	respect. Most programming languages do not allow this.</p>
 
-    <p>What is DWARF? Dr. Brian Russell at Bell labs designed and
-    implemented this debugging format and humorously named it "DWARF"
-    to go along with the ELF which is an object deck format. He
-    proposed the "Debugging With Arbitrary Record Formats" as a
-    backronym. Even though the ELF format is not used on OS's like
-    MacOS and and MS Windows, the debugging format they use is still
-    DWARF.</p
+      <p>As I said before, this scanning and parsing library marks
+	regions of text, called "ranges". If you are writing an
+	interpreter, you typically control the way debug information
+	is stored. So saving the entire range can be done. Many
+	interpreters such as for Python, Perl, or Ruby don't do this
+	though. Etherium Solidity's debug tables is notable in that it
+	does capture this.</p>
 
-    <p>
-      DWARF does not support mapping an instruction to a range of
-      source text, but one thing that can be done is to mark the
-      ending instruction.
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN] 11.4 ⟶ 11.5
-      </div>
-    </p>
+      <p>If you are compiling to machine code, the position information
+	will need to invariably be stored DWARF format which does not
+	support ranges. To compensate a little, you can mark the end
+	of a range. And this is useful.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN] 11.3 ⟶ 12.1
+	</div>
+      </p>
 
+    </font>
   </aside>
 </section>

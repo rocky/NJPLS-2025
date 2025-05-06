@@ -28,24 +28,29 @@
       </p>
 
       <p>
-	One thing a compiler needs to provide a debugger, or error
-	crash routine is a mapping from a given running instruction or the
-	instruction where an error occurred, to a
-	place or position in the source text.
+	One thing a compiler needs to provide a debugger, or crash
+	routine is a mapping from a given running instruction or the
+	instruction where an error occurred, to a place or position in
+	the source text.
 	<div style="color: blue; background-color:
 		    LightYellow">
-	  [DOWN fragment reveal] 7.1 ⟶ 7.1
+	  [DOWN fragment to reveal What is a position?] 7.1 ⟶ 7.1
 	</div>
       </p>
 
-    <p>But what is a position?
+      <p>But what is a position?
+      </p>
+      <p>In a compiler books, if there is mention of position
+	information, it is usually no more than a formal statement
+	like the one given here.</p>
+      <p>So, let's dig deeper...
       <div style="color: blue; background-color:
 		  LightYellow">
-	[DOWN fragment reveal] 7.1 ⟶ 7.1
+	[DOWN fragment to street address] 7.1 ⟶ 7.1
       </div>
     </p>
-    <p>It is analogous to a street address. Note that a street address
-      hierarchical in nature.</p>
+    <p>A position is analogous to a street address. Note that a street
+      address hierarchical in nature.</p>
 
     <p>The same is true for a position. It can be broken down into
       several parts which are contained inside each other.
@@ -131,12 +136,13 @@
   <aside class="notes">
     <font size="5.0em">
     <p>The other broad piece of information I'll call a <i>location</i> which is
-      the place inside a container. This is what most compiler writers think of as a position</p>
+      the place inside a container. This is what most compiler writers think of as a position.
+    </p>
     <p>In the example above, it is the top part: Jane Street
       Capital. 250 Vesey Street.
       <div style="color: blue; background-color:
 		LightYellow">
-	[DOWN] 7.2 ⟶ 7.3
+	[NEXT] 7.3 ⟶ 8.1
       </div>
     </p>
     </font>

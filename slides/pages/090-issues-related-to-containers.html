@@ -4,7 +4,7 @@
     <ul>
       <li>Compiled source text is not that same as text inside file that IDE uses
 	<ul>
-	  <li class="fragment">File is ambiguous, directory or version-control-repository is different.
+	  <li class="fragment">File name is ambiguous</li>
 	  <li class="fragment">Version of file is different</li>
 	</ul>
       </li>
@@ -12,49 +12,71 @@
     </ul>
   </p>
   <aside class="notes">
+    <font size="4.0em">
 
-    <p>As I said, the reason we want to store a container name is so
-    that debuggers can find the source text or so report that
-    container in an runtime error message. Often the file mentioned
-    will be opened and the source position will be shown in a debugger
-      or in such an error message.
-    </p>
+      <p>As I said, the reason we want to store a container name is so
+	that debuggers can access the container and show the source text
+	inside a debugger or in a runtime error message.
+      </p>
 
-    <p>But this opens up the possibility for another problem: the
-    source text that the compiler or interpreter read the program
-    isn't the same as what the programmer or rather programmer's IDE
-    sees.
-    <div style="color: blue; background-color:
-		LightYellow">
-    [DOWN Fragment] 9.1 ⟶ 9.2
-    </div>
-    </p>
+      <p>But this raises the possibility of another problem: the
+	source text that the compiler or interpreter read isn't the
+	same as what the programmer or rather programmer's IDE sees.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN File name is ambigous] 9.1 ⟶ 9.1
+	</div>
+      </p>
 
-    <p>
-      Mismatches in the hierarchy surrounding a container. A file
-      name might be indicated, but not the directory the file is under,
-      or on the same underlying storage (the file might be on a
-      different require a machine name, or a different git repository
-    </p>
+      <p>
+	For example, if an incomplete file name is given, but not the
+	directory that is under, this can lead to a mismatch. I have
+	encountered this problem many times. Therefore, in my debuggers
+	I always store a fully resolved file name as well as a mapping
+	from short name to full path name when the runtime-system
+	provides only a short file name.
+      </p>
 
-    <p>
-      In the street address analogy, there are other building
-      named 250 but not 25 Vesey Street. And there can be other 250
-      Vesey Streets, just not in New York city.
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN Fragment] 9.1 ⟶ 9.2
-      </div>
-    </p>
+      <p>And over time, I have seen intrepeters shift from short name to
+      fully resolved file name.
+      </p>
 
-    <p>Similarly, the container or version control repository are the
-      same but the version of the file is different. This often happens when the
-      file is source text gets modified after the program starts running.
-    </p>
-    <p>Another common situation is that the file is in version control
-    but the version that was compiled and the version that is
-      currently checked out is a different.
-    </p>
+      <p>
+	In the street address analogy, there are other buildings
+	named 250 but not 250 Vesey Street. And there can be other 250
+	Vesey Streets, just not in New York City.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN to Version is different] 9.1 ⟶ 9.1
+	</div>
+      </p>
+
+      <p>The file might be on a different machine or underlying
+	storage. Or course, this is not a problem if
+	the <i>contents</i> are the same. For example, if the file is
+	in a version-control system <em>and</em> it is the same
+	version, then we're okay. But we'd need to check that.
+      </p>
+      <p>By the way, I would bet that the book on debuggers from 19
+	years ago, does not this problem involving files checked out from
+	version control systems.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN no access to source text] 9.1 ⟶ 9.1
+	</div>
+      </p>
+
+      <p>A more extreme case of the the source text not being the same
+	happens when the IDE just doesn't have access to the file at
+	all. This is more likely to occur in debugging remotely which is
+	prevalent nowadays. Or in problems in proprietary code where
+	source code is intentionally not distributed.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN] 9.1 ⟶ 9.2
+	</div>
+      </p>
+    </font>
 
 </aside>
 </section>
@@ -62,42 +84,43 @@
   <h1>Out-of-Sync Issues Remedies for Containers</h1>
   <p align="left" style="font-size: 26px">
     <ul>
-      <li>SIP hash of source text</li>
+      <li>Store hash of source text</li>
       <li>Storing source text inside debug information</li>
       <li>Passing source text over the network (for remote execution)
     </ul>
   </p>
 
   <aside class="notes">
-    <p>
-      One way to detect this problem is to store a checksum or hash
-      of the source text. Python has the ability to store a SIP hash
-      inside bytecode for the purpose of making sure source code
-      matches. Python selected the SIP hash to be relatively fast, while
-      also keeping the possibility of for hash collisions low.
+    <p>One obvious way to avoid this kind of problem is to
+    store the source entire source text inside a debug file. The debug
+    tables for Etherium Solidity work this way. The downside of this
+    is that it might lead to huge debug files. Solidity programs,
+    however, are generally very short.
     </p>
 
-    <p>Another possibility that is sometimes used, is to store the
-    source text inside a debug file. The debug tables for Etherium
-    Solidity work this way. The downside of this is that it might lead
-    to huge debug files. Solidity programs however are generally very
-      short
+    <p>
+      Instead of storing the entire source text, Python stores a
+      checksum or hash of the source text in its bytecode file. Python
+      selected its SIP hash function to be easy to
+      compute while keeping <i>low</i> the possibility false-positive collisions.
     </p>
 
-    <p>Another technique used a bit in remote debugging is to have the
-    the source text sent across the network on request. So a local IDE
-    doesn't try to access the source text n certain cases, even if the
-    source text exists locally. A downside of this is that a lot of
-    information might be passed over the network if you are not
-    careful and information isn't cached.</p>
+    <p>
+      In debug API protocols that work remotely, sometimes source text
+      is sent across the network on request from the front-end. With
+      this, a local IDE doesn't have to have the source text stored in
+      a file locally. A downside of this is that a lot of information
+      might be passed over the network if the front end does not cache
+      source text.
+    </p>
 
     <p>
-      Now that we've described containers we can focus on the part
+      Now that we've described containers, we can focus on the part
       that most people think of when talking about a position: the
       location inside that container.
       <div style="color: blue; background-color:
 		  LightYellow">
-	[NEXT] 9.1 ⟶ 10.1
+	[NEXT] 9.2 ⟶ 10.1
       </div>
     </p>
 

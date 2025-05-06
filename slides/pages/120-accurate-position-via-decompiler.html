@@ -29,14 +29,15 @@
 
       <p>
 	What I have done in Perl5 and Python, is write a
-	decompiler. This starts out with the code produced and
-	reconstructs source code. This is easier done when high-level
-	bytecode is involved as in the case of Python, or where the
-	interpretation is done on a tree structure which happens in
-	Perl5 and Korn Shell.
+	<i>decompiler</i>. This starts out with the instructions
+	produced and reconstructs source code. This is easier done
+	when high-level intermediate code is interpreted. This is true
+	in Python.  But it is also true for many other
+	interpreters. Again, I did this as well for Perl5.
       </p>
 
-      <p>After writing the decompiler, I then hooked this into a gdb-like debugger.
+      <p>After writing the decompiler for Python, I then hooked this
+      into a gdb-like debugger that I also wrote for Python. [RUN CODE]
       </p>
 
       <p>
@@ -44,37 +45,37 @@
 	expression with two divisions that raises
 	a <i>ZeroDivision</i> error when run. When I run it using
 	Python, we just get just the line number 2. No indication
-	of <i>which</i> divide raised an error.  In Python 3.13, this
-	has been fixed though.
+	of <i>which</i> divide raised an error.
       </p>
 
       <p>
-	Next, I run it under a debugger I wrote, called <i>trepan3k</i> so
-	that when there is an error, it goes into the debugger's
-	post-mortem handling. In that, there is a <i>deparse</i> command
-	which takes deparses the program. For this it uses a grammar and
-	builds a parse tree and from the instructions. Based on this
-	parse tree, we can associate a range of source text.
+	Next, I run it under a debugger I wrote,
+	called <i>trepan3k</i> so that when there is an error, it goes
+	into the debugger's post-mortem handling. In that, there is
+	a <i>deparse</i> command which takes deparses the program. For
+	this, it uses a grammar and builds a parse tree from the
+	instructions. Based on the parse tree, we can associate a
+	range of source text at associated with any single
+	instruction.
       </p>
 
-      <p>Here, we see <i>which</i> divide errored.</p>
+      <p>So Here, we see <i>which</i> divide errored.</p>
       <p>
 	The <i>--parent</i> option is just showing the parent text in
 	addition to the text associated with the instruction. If the first
-	divide errored the parent context would have been: <i>6 / x</i>.
+	divide errored, the parent context would have been: <i>6 / x</i>.
       </p>
 
       <p>
 	Previously we mentioned that containers are
 	hierarchical. Here, we see that locations <i>inside</i>
-	containers can also be thought of as being hierarchical when
+	containers can also be thought of as being hierarchical, when
 	viewed from the standpoint of the program structure or parse
 	tree.
       </p>
 
       <p>I have glossed over a lot of detail here, the last slide has
 	links for more information and detail.
-
 
 	<div style="color: blue; background-color:
 		    LightYellow">

@@ -5,12 +5,14 @@
       What is a High-Level Dynamic Language Interpreter?
     </p>
 
-    <ul>
-      <li class="fragment">Typically has an <i>eval()</i>, <i>exec()</i> or fast compile/run function...</li>
-      <li class="fragment">This allows it to support an interactive shell.</li>
-      <li class="fragment">Has introspection, e.g. looking at call stack and current "instruction"</li>
-      <li class="fragment">Often has a high-level intermediate form (bytecode, tree-evaluator)
+    <p>
+    <ul class="fragment">
+      <li>Typically has an <i>eval()</i>, <i>exec()</i> or fast compile/run function...</li>
+      <li>This allows it to support an interactive shell.</li>
+      <li>Has introspection, e.g. looking at call stack and current "instruction"</li>
+      <li>Often has a high-level intermediate form (bytecode, tree-evaluator)
     </ul>
+    </p>
 
     <p class="fragment">
 	<img src="images/language-logos/python-logo.png"
@@ -46,71 +48,87 @@
     </p>
   </div>
   <aside class="notes">
-    <p>Now I'd like to briefly talk about a common class of debuggers that is easy to write a debugger for.
-    </p>
-
-    <p>The topic of writing a debugger would, alone, easily take
-    hours. But I do want to give some idea here to encourage compiler
-    writers think about and include a debugger.</p>
-
-    <p>I've noticed when the first debugger is written for a
-    compilation system that doesn't have one, you will invariable find
-    a lot of mistakes in position reporting.</p>
-
-    <p>Here is why. In an error report, while saying that you are on
-    line <em>x</em> when you are really at line <em>x+1</em> is
-    unhelpful, it is too often tolerated. But inside a debugger, if a
-    position is off by one line, users will quickly notice it and find
-    it intolerable.
-    </p>
-
-    <p>In high-level dynamic interpreters providing debugger support
-      it is straight-forward.</p>
-
-    <p>So what do I mean by "high-level dynamic interpreters"?
-    "Dynamic" just means that the language allows allows code to be
-    created and run runtime. Here, it doesn't matter whether the
-    system is an interpreter or there is a fast compiler that can link
-    in the new code at runtime. Often this done by an <i>eval()</i>
-    function.</p>
-
-    <p>The new code evaluated could come from string or it could be an
-    AST built at runtime. The "high-level" part is also kind of a wiggle
-    term. What I mean here is that the intermediate language that
-    the interpreter runs off of uses higher-level objects, such as
-    objects of the language as opposed to register values and memory
-    addresses.
-    <div style="color: blue; background-color:
-		LightYellow">
-      [DOWN for language logos] 13.1 ⟶ 13.1
-    </div>
-    </p>
-
-    <p>
-      Here are some Languages that fit into this category: Python,
-      Ruby, Perl, POSIX shells, are just a few of the many languages
-      that fit into this category. Lua, and OCaml, and many Lisps like
-      Scheme and Emacs Lisp support both an interpreted as well as a
-      compiled code.
-    </p>
-
-
-    <p>An import aspect about interpreters for these languages is that
-    the compiler writer has a lot of control over the runtime
-    environment.
+    <font size="4.0em">
+      <p>When the first debugger is written for a compilation system
+	that doesn't have one, you will invariable find a lot of mistakes
+	in position reporting.
       </p>
 
-    <p>Something else that is a hallmark of "high-level dynamic interpreters"
-      is that these systems come with an interactive shell or REPL (Read
-      Eval Print Loop), that allows you to type in some code in the language
-      and have that code run.
-    <div style="color: blue; background-color:
-		LightYellow">
-      [DOWN] 13.1 ⟶ 13.2
-    </div>
+      <p>
+	In an error report, while saying that you are on
+	line <em>x</em> when you are really at line <em>x+1</em> is
+	unhelpful, it is too often tolerated. But inside a debugger, if a
+	position is off by one line, users will quickly notice it and find
+	it intolerable.
+      </p>
+
+      <p>
+	So now, I'd like to briefly talk about a common class of programming
+	environments that is easy to write a debugger for.
+      </p>
+
+    <p>
+      In high-level dynamic interpreters, providing debugger support
+      is straight-forward.
     </p>
 
-</aside>
+      <p>What do I mean by "high-level dynamic interpreters"?
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for list of properties]13.1 ⟶ 13.1
+	</div>
+      </p>
+
+      <p>
+	"Dynamic" just means that the language allows allows code to be
+	created and run runtime. Here, it doesn't matter whether the
+	system is an interpreter or there is a fast compiler that can link
+	in the new code at runtime. Often this done by an <i>eval()</i>
+	function.</p>
+
+      <p>
+	The new code evaluated could come from string or it could be an
+	AST built at runtime.
+      </p>
+      <p>
+	The "high-level" part is also kind of a wiggle
+	term. What I mean here is that the intermediate language that
+	the interpreter runs off of uses higher-level objects, such as
+	objects of the language as opposed to register values and memory
+	addresses.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN for language logos] 13.1 ⟶ 13.1
+	</div>
+      </p>
+
+      <p>
+	Here are some Languages that fit into this category: Python,
+	Ruby, Perl, POSIX shells, are just a few of the many languages
+	that fit into this category. Lua, and OCaml, and many Lisps like
+	Scheme and Emacs Lisp support both an interpreted as well as a
+	compiled code.
+      </p>
+
+
+      <p>
+	An import aspect about interpreters for these languages is that
+	the compiler writer has a lot of control over the runtime
+	environment.
+      </p>
+
+      <p>
+	Something else that is a hallmark of "high-level dynamic interpreters"
+	is that these systems come with an interactive shell or REPL (Read
+	Eval Print Loop), that allows you to type in some code in the language
+	and have that code run.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN] 13.1 ⟶ 13.2
+	</div>
+      </p>
+    </font>
+  </aside>
 </section>
 <section>
   <div align="left">
@@ -120,97 +138,104 @@
 
     <pre>
       <code class="hljs python">
-      def callback_hook(event):
-         instrospect stack;
-         if event and stack indicate something we are interested in:
-           run interactive command loop make use of eval/exec
-      register_callback(callback_hook)
-    </code>
+	def callback_hook(event):
+        instrospect stack;
+        if event and stack indicate something we are interested in:
+        run interactive command loop make use of eval/exec
+	register_callback(callback_hook)
+      </code>
     </pre>
   </div>
-<aside class="notes">
-  <p>
-    <p>In this kind of situation, here is how a debuggers typically
-      works. The runtime system allows you register callback function
-      which triggers whenever a particular event occurs. Here, events
-      are things like calls and returns from functions, raising
-      exceptions, user-defined breakpoint, after each "instruction"
-      (this is usually not done though), and finally, before each new
-      "statement". I use "statement" very loosely. In too many
-      systems, like Python and Perl5, among others, it is every time an
-      instruction changes line number. And in fact the mapping from
-      instruction to source code is called "line number" table.
-    </p>
-
-    <p>One thing I would like to advocate is moving for is moving away
-    from the term "line number. I don't have a good replacement term
-    for this though. If someone has suggestions, please let me know.
-    </p>
-
-    <p>Given this special environment, here is the design for a simple
-    debugger. Wrap the program you want to run around some code that
-    registers callbacks. And then inside the callback function
-    instropsect on the current call stack, to get position and
-    variable information as needed. Then bascally you can go into
-    REPL which isn't all that different from the shell that the
-    programming environment already provides. You might provide
-    additional functions for stack introspection, and setting
-    breakpoints, and showing or setting aspects around the debugger
-    environment.
-    </p>
-
-    <p>In providing a commands, I suggest building off some existing
-      debugger command language. For the debuggers I've written, I
-      modelled them off of <i>gdb</i>. By doing this you not only get
-      a guide towards what commands to provide, but you also make it
-      easier for your users to do complicated things more quickly, if
-      they already know `gdb`. And if they don't, should they have to
-      use <i>gdb</i> in the future, they will have to learn less.
+  <aside class="notes">
+    <font size="4.0em">
+      <p>
+	In this kind of situation, here is how a debuggers typically
+	works. The runtime system allows you register callback function
+	which triggers whenever a particular event occurs. Here, events
+	are things like calls and returns from functions, raising
+	exceptions, user-defined breakpoint, after each "instruction"
+	(this is usually not done though), and finally, before each new
+	"statement". I use "statement" very loosely. In too many
+	systems, like Python and Perl5, among others, it is every time an
+	instruction changes line number. And in fact the mapping from
+	instruction to source code is called "line number" table.
       </p>
 
-    <p>Not only does this make it easier for humans to understand your
-    debugger, but it makes it easier for programs to do so as well!
-    Here is an amusing story. After I wrote a debugger for bash, I
-    though I'd hook it into the debugger front-end system that was
-    popular 20 years ago or so called `ddd`. It didn't have a single
-    configuration file for specifying characteristics of your
-    debugger, there were just about 100 places of C++ code that you
-    had to change. So I'd search to find what code was
-    gdb-specific. And then I added, code of the form "and do that for
-    my bash debugger as well". After I got this done, I was was
-    surprised so see that on its own it created a custom "debugger
-    settings" page which had the names of all of the setting that
-    could be changed in the program, but I had never entered this
-      explicitly. How did it know this?
+      <p>
+	I would like to advocate is moving for is moving away from the
+	term "line number". I don't have a good replacement term for this
+	though. If someone has suggestions, please let me know.
       </p>
 
-    <p>
-      What it did was doing was running a <em>help</em> to get a list
-      of all of the settings, and then issuing a command to show the
-    value of each one, and then parsing the output to determine the
-    *type* the setting in order to make a custom boolean checkbox or a
-    radio box or integer slider!
+      <p>
+	Given this special environment, here is the design for a simple
+	debugger. Wrap the program you want to run around some code that
+	registers callbacks. And then inside the callback function
+	instropsect on the current call stack, to get position and
+	variable information as needed. Then bascally you can go into REPL
+	which isn't all that different from the shell that the programming
+	environment already provides. You might provide additional
+	functions for stack introspection, and setting breakpoints, and
+	showing or setting aspects around the debugger environment.
       </p>
 
-    <p>
-      Now I want to talk about supporting breakpoints. This simplest
-      and most straightforward way to support breakpoints and the
-      other callback events is simply to augment the interpreter with
-      a test to see if a debug or trace flag has been set. The problem
-      with this is that it can add a lot of overhead. Especially if
-      this test is done every virtual instruction or every
-      source-mapping change.
+      <p>
+	In providing a commands, I suggest building off some existing
+	debugger command language. For the debuggers I've written, I
+	modelled them off of <i>gdb</i>. By doing this you not only get
+	a guide towards what commands to provide, but you also make it
+	easier for your users to do complicated things more quickly, if
+	they already know `gdb`. And if they don't, should they have to
+	use <i>gdb</i> in the future, they will have to learn less.
+      </p>
 
-      One simple and often used solution to speed this kind of thing
-      up is to have two interpreters, one that contains the checks and
-      one that doesn't. When debugging is turned on, or turned on for
-      some particular function or module, then the debug interpreter
-      is used. In Lisp, OCaml and other systems which support compiled
-      and interpreted code this is one way that they support better
-      run-time debugging.
-      <div style="color: blue; background-color:
-		LightYellow">
-      [NEXT] 13.2 ⟶ 14.1
-    </div>
-</aside>
+      <p>
+	Not only does this make it easier for humans to understand
+	your debugger, but it makes it easier for programs to do so as
+	well!  Here is an amusing story. After I wrote a debugger for
+	bash, I though I'd hook it into the debugger front-end system
+	that was popular 20 years ago or so called <i>ddd</i>. It
+	didn't have a single configuration file for specifying
+	characteristics of your debugger, there were just about 100
+	places of C++ code that you had to change. So I'd search to
+	find what code was gdb-specific. And then I added, code of the
+	form "and do that for my bash debugger as well". After I got
+	this done, I was was surprised so see that on its own it
+	created a custom "debugger settings" page which had the names
+	of all of the setting that could be changed in the program,
+	but I had never entered this explicitly. How did it know this?
+      </p>
+
+      <p>
+	What it did was doing was running a <em>help</em> to get a list
+	of all of the settings, and then issuing a command to show the
+	value of each one, and then parsing the output to determine the
+	*type* the setting in order to make a custom boolean checkbox or a
+	radio box or integer slider!
+      </p>
+
+      <p>
+	Now I want to talk about supporting breakpoints. This simplest
+	and most straightforward way to support breakpoints and the
+	other callback events is simply to augment the interpreter with
+	a test to see if a debug or trace flag has been set. The problem
+	with this is that it can add a lot of overhead. Especially if
+	this test is done every virtual instruction or every
+	source-mapping change.
+      </p>
+
+      <p>
+	One simple and often used solution to speed this kind of thing
+	up is to have two interpreters, one that contains the checks and
+	one that doesn't. When debugging is turned on, or turned on for
+	some particular function or module, then the debug interpreter
+	is used. In Lisp, OCaml and other systems which support compiled
+	and interpreted code this is one way that they support better
+	run-time debugging.
+	<div style="color: blue; background-color: LightYellow">
+	  [NEXT] 13.2 ⟶ 14.1
+	</div>
+      </p>
+    </font>
+  </aside>
 </section>

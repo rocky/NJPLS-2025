@@ -22,24 +22,30 @@ ZeroDivisionError: float division by zero
     <p>
       Historically, a location inside a program was a line number. But
       using line numbers is pretty crude.
+    </p>
 
+    <p>
       I recently gave a lecture in a compiler class showing how to
-      beef up the compiler they were writing for the class so that it
+      beef up the course compiler so that it
       tracked positions. In their compiler, programs could only be one
       line long!
+    </p>
 
-      So to saying that there's an error on line one is basically
-      saying there's an error somewhere in the program and is of no
-      help.
+    <p>
+      So to saying that there's an error on line one is given no
+      information at all.
+    </p>
 
-      Lest you think this rare. Here is an error reported from Python 3.12:
+    <p>
+      Lest you think this rare. Think about errors in an interactive
+      program shell. Here is a session with Python 3.12:
     </p>
 
     <p>Which divide caused the exception in line 1? No clue given here.
     </p>
     <p>
       I am pleased to report that in Python 3.13 this has been
-      corrected, *somewhat*. The line is still reported as line one
+      corrected, <em>somewhat</em>. The line is still reported as line one
       but there is now a cursor on the specific division that caused
       the problem.
     </p>
@@ -47,11 +53,10 @@ ZeroDivisionError: float division by zero
     <p>
       Why it took over 25 years for Python to address something like
       this is sad. And if you try the same thing in Ruby or
-      Perl. You'll get something similar to the pre 3.13 behavior
-      where you get a line number with no indication *where* on the
-      line, which divide, the problem lies. (Javascript will say the
-      computation is Infinity, so I can't compare its behavior using
-      this example).
+      Perl. You'll get something similar to the behavior above: where
+      you get a line number with no indication <i>where</i> on the
+      line, or <i>which</i> divide, the problem lies. Javascript will
+      say the computation is Infinity, so no error is raised.
     </p>
 
     <p>
@@ -62,8 +67,8 @@ ZeroDivisionError: float division by zero
      from.
     </p>
 
-    <p>But more useful is note a position as a range of text from the
-    start and end position. The Jane Street parsing library for
+    <p>More useful is to specify a position as a range of text from the
+    start to end position. The Jane Street parsing library for
       S-Expressions has this. So let's take a look at this.
       <div style="color: blue; background-color:
 		  LightYellow">
