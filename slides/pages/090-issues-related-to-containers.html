@@ -16,7 +16,7 @@
 
       <p>As I said, the reason we want to store a container name is so
 	that debuggers can access the container and show the source text
-	inside a debugger or in a runtime error message.
+	inside a debugger or in an error message.
       </p>
 
       <p>But this raises the possibility of another problem: the
@@ -29,9 +29,10 @@
       </p>
 
       <p>
-	For example, if an incomplete file name is given, but not the
-	directory that is under, this can lead to a mismatch. I have
-	encountered this problem <i>way too many</i> times.
+	For example, if an incomplete file name is given without its
+	parent directorie(s), this can lead to a mismatch or the file
+	not being able to be found. I have encountered this
+	problem <i>way too many</i> times.
 	</p>
       <p>
 	Therefore, in my debuggers I always store a fully-resolved
@@ -46,9 +47,11 @@
       </p>
 
       <p>
-	In the street address analogy, there are other buildings
-	named 250 but not 250 Vesey Street. And there can be other 250
-	Vesey Streets, just not in New York City.
+	In the street address analogy, there are <i>other</i>
+	buildings
+	<i>named</i> 250, but not 250 <i>Vesey Street</i>. And there
+	can be other 250 Vesey Streets, just not in <i>New York
+	City</i>.
 	<div style="color: blue; background-color:
 		    LightYellow">
 	  [DOWN to Version is different] 9.1 ⟶ 9.1
@@ -69,11 +72,11 @@
 	</div>
       </p>
 
-      <p>A more extreme case of the the source text not being the same
+      <p>A more extreme case of the source text not being the same
 	happens when the IDE just doesn't have access to the file at
-	all. This is more likely to occur in debugging remotely which is
-	prevalent nowadays. Or in problems in proprietary code where
-	source code is intentionally not distributed.
+	all. This is more likely to occur in debugging remotely which
+	is prevalent nowadays. Or in problems in proprietary code
+	where source code is <i>intentionally</i> not distributed.
 	<div style="color: blue; background-color:
 		    LightYellow">
 	  [DOWN] 9.1 ⟶ 9.2
@@ -102,19 +105,20 @@
     </p>
 
     <p>
-      Instead of storing the entire source text, Python stores a
-      checksum or hash of the source text in its bytecode file. Python
-      selected its SIP hash function to be easy to compute, while
-      keeping <i>low</i> the possibility false-positive collisions.
+      Instead of storing the entire source text, Python stores a file
+      name along with a checksum or hash of the source text in its
+      bytecode file. Python selected its SIP hash function to be easy
+      to compute, while keeping <i>low</i> the possibility
+      false-positive collisions.
     </p>
 
     <p>
       In debug API protocols that work remotely, sometimes source text
       is sent across the network on request from the front-end. With
-      this, a local IDE doesn't have to have the source text stored in
-      a file locally. A downside of this is that a <em>lot</em> of
-      information might be passed over the network if the front end
-      does not cache source text.
+      this, a local IDE doesn't <i>have</i> to have the source text
+      stored in a file locally. A downside of this is that
+      a <em>lot</em> of information might be passed over the network,
+      if the front end does not cache source text.
     </p>
 
     <p>

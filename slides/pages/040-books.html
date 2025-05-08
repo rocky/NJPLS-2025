@@ -35,52 +35,64 @@
     decompilers, nor runtime support for debugging
   </p>
   <aside class="notes">
-    <p>Today, I will mostly talk only a <i>little</i> bit about what a
-      compiler should consider to provide error-position information
-      at run time. But I'll try to broaden this a little to mention
-      support for run-time debugging more generally.</p>
+    <font size="4.0em">
+      <p>
+	Today, I will mostly talk only a <i>little</i> bit about what a
+	compiler should consider to provide error-position information
+	at run time. I'll try to broaden this a little at the end to
+	mention support for run-time debugging more generally. My 2010
+	paper cited in the last slide has more information than I will
+	have time to give today.</p>
 
-    <p>Here are just a <i>few</i> of the books on compilers from
-      the <i>many</i> that exist. I have the more popular books that
-      sold on <i>amazon.com</i>. These cover most of the books that
-      people noted in the survey. I don't have lecture
-      notes, or indvidual course notes here.
-    </p>
+      <p>
+	Here are just a <i>few</i> of the books on compilers from
+	the <i>many</i> that exist. I have the more popular books that
+	are sold on <i>amazon.com</i>. These cover all of the books that
+	people noted in the survey.
+      </p>
 
-    <p>I would <em>love</em> to report that what I am going to say
-      here you can find in greater detail in <em>any</em> of these
-      compiler books.
-      <div style="color: blue; background-color:
-   		  LightYellow">
-	[DOWN Fragment to "you can't"] 4.1 ⟶ 4.1
-      </div>
-    </p>
+      <p>
+	I would <em>love</em> to report that what I am going to say
+	here you can find in greater detail in <em>any</em> of these
+	compiler books.
+	<div style="color: blue; background-color:
+   		    LightYellow">
+	  [DOWN Fragment to "you can't"] 4.1 ⟶ 4.1
+	</div>
+      </p>
 
-    <p>
-      But you can't. And that's a big part of why I am here.</p>
-    <p>I could have included probably at least two dozen more
-      books.</p>
-    <p>
-      I have here some books that are out of print. But this just
-      shows that this phenonemon is not new. I also have some rather
-      specialized books, such as one Pascal, or advanced compiler
-      writing. But you won't find a specialized <i>compiler</i> book
-      that includes information on debugging support and debuggers.
-    </p>
-    <p>
-      It should come as no surpise then, that if the popular books on
-      compilers are silent about debuggers and debugging support, the
-      compilers that people <i>write</i> don't have debuggers either.
-    </p>
-    <p>
-      In this is confirmed in the survey. Over 90% of the people who
-      have said they were part of a compiler team, report that the
-      compiler had no debugger.
-      <div style="color: blue; background-color:
-		  LightYellow">
-	[DOWN] 4.1 ⟶ 4.2
-      </div>
-    </p>
+      <p>
+	But you can't. And that's a big part of why I am here.
+      </p>
+      <p>I could have included at least two dozen more books. I also
+	looked at the <i>all</i> of the lecture notes mentioned in the
+	survey.  None of those appear to cover the topic of this talk
+	either.
+      </p>
+      <p>
+	I have here some books that are out of print. But this just
+	shows that this phenonemon is not new. I also have some rather
+	<i>specialized</i> books, such as one on Pascal compilers, or
+	advanced compiler writing. But you won't find a
+	specialized <i>compiler</i> book that includes information on
+	debugging support and debuggers.
+      </p>
+      <p>
+	It should come as no surprise then, that if the popular books on
+	compilers are silent about debuggers and debugging support, then
+	the compilers that people <i>write</i> don't have debuggers
+	either.
+      </p>
+      <p>
+	And this is confirmed in the survey. Over 90% of the people who
+	have said they were part of a compiler team, report that the
+	compiler that they worked on had no debugger.
+	<div style="color: blue; background-color:
+		    LightYellow">
+	  [DOWN] 4.1 ⟶ 4.2
+	</div>
+      </p>
+    </font>
   </aside>
 </section>
 <section>
@@ -94,7 +106,9 @@
 	 style="vertical-align: middle" height="200">
     </br>
   <blockquote align="left" class="fragment">
-    "Considering there are practically <b>no</b> books around that deals with debugger theory, I would label it a pioneering effort.."
+    "Considering there are practically <b>no</b> books around that
+    deals with debugger theory, I would label it a pioneering
+    effort.."
   </blockquote>
   </p>
   <p align="left" class="fragment">
@@ -111,11 +125,12 @@
     <p>
       The book in the middle, "Building a Debugger", is about building
       an Intel x86 debugger; it does not seem to be hooked into a
-      compiler or language.
+      compiler or language specifically.
     </p>
 
     <p>
-      The book on <i>gdb</i> is most-likley the
+      I guess the same would be true book for the on <i>gdb</i>; It is
+      most-likley the
       <i>gdb</i> manual, possibly massaged a little.
       <div style="color: blue; background-color:
    		  LightYellow">
@@ -125,7 +140,7 @@
 
     <p>
       The first book "How Debuggers Work" is 19 years old. I have a
-      quote from the review, which you can read here. It is still in
+      quote from a review, which you can read here. It is still in
       its first revision.
     </p>
     <p>

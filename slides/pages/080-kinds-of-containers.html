@@ -5,7 +5,7 @@
     Where can a program come from?
     <ul>
       <li class="fragment">a file in a file system,</li>
-      <li class="fragment">interactive input; a stream from a socket or piped into a compiler,</li>
+      <li class="fragment">interactive input; a stream from a socket</li>
       <li class="fragment">a piece of an "archive"-format file:
           Java classfile <tt>jar</tt>, Python <tt>wheel</tt>
           (<tt>zip</tt>), or machine-code library, etc.,</li>
@@ -31,8 +31,9 @@
 	As I said before, a file in the file system is the most common
 	possibility.
       </p>
-      <p>A problem I see in many systems, is a weakness in being able to deal
-	with positions when working with containers <i>other</i> than a file in a filesystem.
+      <p>A problem I see in many systems, is a <i>weakness</i> in
+	being able to deal with positions when working with
+	containers <i>other</i> than a file in a filesystem.
 
       </p>
       <p> So let's go into other kinds of containers.
@@ -42,12 +43,12 @@
 	</div>
       </p>
 
-    <p>Interactive input; or more generally a stream from a socket
-      which might happen in remote execution. Or a stream piped into a
-      compiler. The weakness I see here is an inability of the system
-      to be able to show the source text in an IDE. Here, input is
-      often one line long. So it is useful to be able to give position
-      information in finer granularity just a line.
+    <p>Programs can come from interactive input; or more generally a
+      stream from a socket A weakness I see here in compiler systems,
+      is the inability to be able to show the source text fragment in
+      this situation. Here, input is often one line long. So it is
+      useful to be able to give position information in finer
+      granularity just a line.
     <div style="color: blue; background-color:
 		LightYellow">
       [DOWN fragment to archive member] 8.1 ⟶ 8.1
