@@ -18,9 +18,9 @@
   <aside class="notes">
     <font size="4.em">
       <p>
-	Program source code comes from <em>somewhere</em>. It is useful
-	for the programmer and IDE's to know <em>where</em> it came
-	from. So what are some possibilities?
+	Program source code comes from <em>somewhere</em>. It is
+	useful for a debugger, profiler, or IDE to know <em>where</em>
+	it came from. So what are some possibilities?
 
 	<div style="color: blue; background-color:
 		    LightYellow">
@@ -44,8 +44,8 @@
       </p>
 
     <p>Programs can come from interactive input; or more generally a
-      stream from a socket A weakness I see here in compiler systems,
-      is the inability to be able to show the source text fragment in
+      stream from a socket. A weakness I see in compiler systems,
+      is the inability to be able to show the source-text fragment in
       this situation. Here, input is often one line long. So it is
       useful to be able to give position information in finer
       granularity just a line.
@@ -55,8 +55,7 @@
     </div>
     </p>
 
-    <p>a piece of an archive-format file. Java "class file" or
-      <tt>jar</tt> files are like this. In Python, <tt>wheels</tt> are
+    <p>In Java, a "class file", or <tt>jar</tt>, is in archive of a set of files. In Python, <tt>wheels</tt> are
       zip files.
     <div style="color: blue; background-color:
 		LightYellow">
