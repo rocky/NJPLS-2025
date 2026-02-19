@@ -1,6 +1,6 @@
 Anyone for a talk on Debuggers or Decompilers
 
-have been working on compilers, debuggers, and most recently decompilers for the last 30 years or so. I have written debuggers the POSIX shells (bash, zsh, ksh), GNU Make (!), and more conventional programming languages like Python, Ruby, Perl, and most recently, an open-source Mathematica. I have also written a couple of decompilers too. The code for some of these (but not all!) is collected at https://github.com/Trepan-Debuggers
+I have been working on compilers, debuggers, and most recently decompilers for the last 30 years or so. I have written debuggers the POSIX shells (bash, zsh, ksh), GNU Make (!), and more conventional programming languages like Python, Ruby, Perl, and most recently, an open-source Mathematica. I have also written a couple of decompilers too. The code for some of these (but not all!) is collected at https://github.com/Trepan-Debuggers
 
 
 Even though debuggers and decompilers are as old as programming languages, one constant thread I encountered is how little there is written or discussed about these topics in general. You might glibly assume that this is because it is all ad hoc and there is no theory. I submit that this is not necessarily so.
